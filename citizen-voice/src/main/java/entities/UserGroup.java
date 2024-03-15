@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entity;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -96,7 +96,7 @@ public class UserGroup implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.UserGroup[ userGroupId=" + userGroupId + " ]";
+        return "entities.UserGroup[ userGroupId=" + userGroupId + " ]";
     }
     
 }

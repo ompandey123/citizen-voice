@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entity;
+package entities;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -23,42 +23,53 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Administrator
  */
 @Entity
-@Table(name = "question_district")
+@Table(name = "question_village")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "QuestionDistrict.findAll", query = "SELECT q FROM QuestionDistrict q"),
-    @NamedQuery(name = "QuestionDistrict.findByQuestionDistrictId", query = "SELECT q FROM QuestionDistrict q WHERE q.questionDistrictId = :questionDistrictId")})
-public class QuestionDistrict implements Serializable {
+    @NamedQuery(name = "QuestionVillage.findAll", query = "SELECT q FROM QuestionVillage q"),
+    @NamedQuery(name = "QuestionVillage.findByQuestionVillageId", query = "SELECT q FROM QuestionVillage q WHERE q.questionVillageId = :questionVillageId")})
+public class QuestionVillage implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "question_district_id")
-    private Integer questionDistrictId;
-    @JoinColumn(name = "district_id", referencedColumnName = "district_id")
-    @ManyToOne(optional = false)
-    private Districttb districtId;
+    @Column(name = "question_village_id")
+    private Integer questionVillageId;
     @JoinColumn(name = "qid", referencedColumnName = "qid")
     @ManyToOne(optional = false)
     private Questiontb qid;
+    @JoinColumn(name = "district_id", referencedColumnName = "district_id")
+    @ManyToOne(optional = false)
+    private Districttb districtId;
+    @JoinColumn(name = "village_id", referencedColumnName = "village_id")
+    @ManyToOne(optional = false)
+    private Villagetb villageId;
     @JoinColumn(name = "state_id", referencedColumnName = "state_id")
     @ManyToOne(optional = false)
     private Statetb stateId;
 
-    public QuestionDistrict() {
+    public QuestionVillage() {
     }
 
-    public QuestionDistrict(Integer questionDistrictId) {
-        this.questionDistrictId = questionDistrictId;
+    public QuestionVillage(Integer questionVillageId) {
+        this.questionVillageId = questionVillageId;
     }
 
-    public Integer getQuestionDistrictId() {
-        return questionDistrictId;
+    public Integer getQuestionVillageId() {
+        return questionVillageId;
     }
 
-    public void setQuestionDistrictId(Integer questionDistrictId) {
-        this.questionDistrictId = questionDistrictId;
+    public void setQuestionVillageId(Integer questionVillageId) {
+        this.questionVillageId = questionVillageId;
+    }
+
+    public Questiontb getQid() {
+        return qid;
+    }
+
+    public void setQid(Questiontb qid) {
+        this.qid = qid;
     }
 
     public Districttb getDistrictId() {
@@ -69,12 +80,12 @@ public class QuestionDistrict implements Serializable {
         this.districtId = districtId;
     }
 
-    public Questiontb getQid() {
-        return qid;
+    public Villagetb getVillageId() {
+        return villageId;
     }
 
-    public void setQid(Questiontb qid) {
-        this.qid = qid;
+    public void setVillageId(Villagetb villageId) {
+        this.villageId = villageId;
     }
 
     public Statetb getStateId() {
@@ -88,18 +99,18 @@ public class QuestionDistrict implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (questionDistrictId != null ? questionDistrictId.hashCode() : 0);
+        hash += (questionVillageId != null ? questionVillageId.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof QuestionDistrict)) {
+        if (!(object instanceof QuestionVillage)) {
             return false;
         }
-        QuestionDistrict other = (QuestionDistrict) object;
-        if ((this.questionDistrictId == null && other.questionDistrictId != null) || (this.questionDistrictId != null && !this.questionDistrictId.equals(other.questionDistrictId))) {
+        QuestionVillage other = (QuestionVillage) object;
+        if ((this.questionVillageId == null && other.questionVillageId != null) || (this.questionVillageId != null && !this.questionVillageId.equals(other.questionVillageId))) {
             return false;
         }
         return true;
@@ -107,7 +118,7 @@ public class QuestionDistrict implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.QuestionDistrict[ questionDistrictId=" + questionDistrictId + " ]";
+        return "entities.QuestionVillage[ questionVillageId=" + questionVillageId + " ]";
     }
     
 }

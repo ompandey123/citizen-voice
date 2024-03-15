@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entity;
+package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -41,6 +41,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Usertb.findByContact", query = "SELECT u FROM Usertb u WHERE u.contact = :contact"),
     @NamedQuery(name = "Usertb.findByGender", query = "SELECT u FROM Usertb u WHERE u.gender = :gender"),
     @NamedQuery(name = "Usertb.findByAddress", query = "SELECT u FROM Usertb u WHERE u.address = :address"),
+    @NamedQuery(name = "Usertb.findByDob", query = "SELECT u FROM Usertb u WHERE u.dob = :dob"),
     @NamedQuery(name = "Usertb.findByZipCode", query = "SELECT u FROM Usertb u WHERE u.zipCode = :zipCode")})
 public class Usertb implements Serializable {
 
@@ -88,6 +89,11 @@ public class Usertb implements Serializable {
     private String address;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "dob")
+    private String dob;
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "zip_code")
     private String zipCode;
@@ -98,6 +104,9 @@ public class Usertb implements Serializable {
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     @ManyToOne(optional = false)
     private Citytb cityId;
+    @JoinColumn(name = "district_id", referencedColumnName = "district_id")
+    @ManyToOne(optional = false)
+    private Districttb districtId;
     @JoinColumn(name = "state_id", referencedColumnName = "state_id")
     @ManyToOne(optional = false)
     private Statetb stateId;
@@ -121,7 +130,7 @@ public class Usertb implements Serializable {
         this.userId = userId;
     }
 
-    public Usertb(Integer userId, String username, String password, String email, String adhaarCardNo, String contact, String gender, String address, String zipCode) {
+    public Usertb(Integer userId, String username, String password, String email, String adhaarCardNo, String contact, String gender, String address, String dob, String zipCode) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -130,6 +139,7 @@ public class Usertb implements Serializable {
         this.contact = contact;
         this.gender = gender;
         this.address = address;
+        this.dob = dob;
         this.zipCode = zipCode;
     }
 
@@ -197,6 +207,14 @@ public class Usertb implements Serializable {
         this.address = address;
     }
 
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
     public String getZipCode() {
         return zipCode;
     }
@@ -229,6 +247,14 @@ public class Usertb implements Serializable {
 
     public void setCityId(Citytb cityId) {
         this.cityId = cityId;
+    }
+
+    public Districttb getDistrictId() {
+        return districtId;
+    }
+
+    public void setDistrictId(Districttb districtId) {
+        this.districtId = districtId;
     }
 
     public Statetb getStateId() {
@@ -293,7 +319,7 @@ public class Usertb implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Usertb[ userId=" + userId + " ]";
+        return "entities.Usertb[ userId=" + userId + " ]";
     }
     
 }

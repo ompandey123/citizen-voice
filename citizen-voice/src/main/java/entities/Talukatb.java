@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entity;
+package entities;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -154,7 +154,7 @@ public class Talukatb implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Talukatb[ talukaId=" + talukaId + " ]";
+        return "entities.Talukatb[ talukaId=" + talukaId + " ]";
     }
     
 }
